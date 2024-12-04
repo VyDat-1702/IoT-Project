@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Smart Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="\icon\fontawesome-free-6.6.0-web\fontawesome-free-6.6.0-web\css\all.min.css">
+  </head>
+  <body>
+    <div class="header" id="header">
+      <div><img src="img_gif/logo.png" /></div>
+      <div><h1>Hệ thống Smart Home</h1></div>
+      <div><img src="img_gif/logo1.png" /></div>
+    </div>
+    <div class="body" id="body">
+      <div class="right">
+        <div class="time">
+          <div class="infor_room">
+            <h3 class="infor_room_name" id = "name">SmartHome</h3>
+          </div>
+          <div class="info_time">
+            <div id="time"></div>
+            <div id="date"></div>
+            <script>
+              function dongho() {
+                var time = new Date();
+                var date = new Date();
+                var ngay = date.getDate();
+                var thang = date.getMonth() + 1;
+                var nam = date.getFullYear();
+                var gio = time.getHours();
+                var phut = time.getMinutes();
+                if (gio < 10) gio = "0" + gio;
+                if (phut < 10) phut = "0" + phut;
+                document.getElementById("time").innerHTML = gio + ":" + phut;
+                document.getElementById("date").innerHTML =
+                  ngay + "/" + thang + "/" + nam;
+                setTimeout("dongho()", 1000);
+              }
+              dongho();
+            </script>
+          </div>
+        </div>
+        <div class="infor">
+          <div class="infor_sensor nhietdo">
+            <p><b>Nhiệt độ (°C)</b></p>
+            <img src="img_gif/temperature.png" id="tem" />
+            <p id="nhietdo">
+            </p>
+          </div>
+          <div class="infor_sensor doam">
+            <p><b>Độ ẩm (%)</b></p>
+            <img src="img_gif/humidity.png" id="hum" />
+            <p id="doam"></p>
+          </div>
+          <div class="infor_sensor nongdo">
+            <p><b>Nồng độ CO2 (ppm)</b></p>
+            <img src="img_gif/pollution.png" id="co2" />
+            <p id="nongdo"></p>
+          </div>
+          <div class="infor_sensor buimin">
+            <p><b>Bụi mịn (µg/m³)</b></p>
+            <img src="img_gif/dust.png" id="dust" />
+            <p id="buimin"></p>
+          </div>
+          <div class="cover" id = "cover_code"></div>
+        </div>
+        <!-- -------------KHACH---------------- -->
+        <div class="device_khach" id = "device_khach">
+          <button id="btn1_khach" onclick="den_khach()">
+            <img id="den_khach" src="img_gif/light-bulb.png" alt="Off" />
+          </button>
+          <button id="btn2_khach" onclick="Maylanh_khach()">
+            <img id="ml_khach" src="img_gif/air-conditioner.png" alt="Off" />
+          </button>
+          <button id="btn3_khach" onclick="Mayloc_khach()">
+            <img id="mlkk_khach" src="img_gif/air-purifier.png" alt="Off" />
+          </button>
+        </div>
+        <!-- -------------NGU------------------->
+        <div class="device_ngu" id = "device_ngu">
+          <button id="btn1_ngu" onclick="den_ngu()">
+            <img id="den_ngu" src="img_gif/light-bulb.png" alt="Off" />
+          </button>
+          <button id="btn2_ngu" onclick="Maylanh_ngu()">
+            <img id="ml_ngu" src="img_gif/air-conditioner.png" alt="Off" />
+          </button>
+          <button id="btn3_ngu" onclick="Mayloc_ngu()">
+            <img id="mlkk_ngu" src="img_gif/air-purifier.png" alt="Off" />
+          </button>
+        </div>
+        <!-- -------------BEP---------------- -->
+        <div class="device_bep" id = "device_bep">
+          <button id="btn1_bep" onclick="den_bep()">
+            <img id="den_bep" src="img_gif/light-bulb.png" alt="Off" />
+          </button>
+          <button id="btn2_bep" onclick="Maylanh_bep()">
+            <img id="ml_bep" src="img_gif/air-conditioner.png" alt="Off" />
+          </button>
+          <button id="btn3_bep" onclick="Mayloc_bep()">
+            <img id="mlkk_bep" src="img_gif/air-purifier.png" alt="Off" />
+          </button>
+        </div>
+      </div>
+      <div class="left ">
+        <div class = "left_living" id="box">
+          <button onclick="phongkhach()">
+            <img src="img_gif/sofa.png" alt="livingroom" />
+            <div><b>Phòng khách</b></div>
+          </button>
+          <div class="left_living-chart">
+            <button class="left_living_name" id = "nhietdo_chart_khach" onclick="showBackground_khach(this)">Nhiệt Độ</button>
+            <button class="left_living_name" id = "doam_chart_khach" onclick="showBackground_khach(this)">Độ Ẩm</button>
+            <button class="left_living_name" id = "nongdo_chart_khach" onclick="showBackground_khach(this)">Nồng Độ Co2</button>
+            <button class="left_living_name" id = "buimin_chart_khach" onclick="showBackground_khach(this)">Bụi Mịn</button>
+          </div>        
+        </div>
+        <div  class = "left_bed" id="box">
+          <button onclick="phongngu()">
+            <img src="img_gif/bedroom.png" alt="bedroom" />
+            <div><b>Phòng ngủ</b></div>
+          </button>
+          <div class="left_bed-chart"> 
+            <button class="left_bed_name" id = "nhietdo_chart_bed" onclick="showBackground_ngu(this)">Nhiệt Độ</button>
+            <button class="left_bed_name" id = "doam_chart_bed" onclick="showBackground_ngu(this)">Độ Ẩm</button>
+            <button class="left_bed_name" id = "nongdoco2_chart_bed" onclick="showBackground_ngu(this)">Nồng Độ Co2</button>
+            <button class="left_bed_name" id = "buimin_chart_bed" onclick="showBackground_ngu(this)">Bụi Mịn</button>
+          </div>     
+        </div>
+        <div class = "left_kitchen" id="box"> 
+          <button onclick="phongbep()">
+            <img src="img_gif/kitchen.png" alt="kitchen" />
+            <div><b>Phòng bếp</b></div>
+          </button>
+          <div class="left_kitchen-chart"> 
+            <button class="left_kitchen_name" id = "nhietdo_chart_bep"  onclick="showBackground_bep(this)">Nhiệt Độ</button>
+            <button class="left_kitchen_name" id = "doam_chart_bep"  onclick="showBackground_bep(this)">Độ Ẩm</button>
+            <button class="left_kitchen_name" id = "nongdo_chart_bep"  onclick="showBackground_bep(this)">Nồng Độ Co2</button>
+            <button class="left_kitchen_name" id = "buimin_chart_bep"  onclick="showBackground_bep(this)">Bụi Mịn</button>
+          </div>   
+        </div>
+      </div>
+    </div>
+    <div class="footer" id="footer">
+      <button id="lienhe" onclick="lienhe()">
+        <img src="img_gif/information.png" alt="information" title="Thông tin liên hệ" id="thongtin">
+      </button>
+      
+    </div>
+    <div class="information_footer" id="information_footer">
+        <div class="first">
+          <h2>Võ Đào Tuấn Đạt <br> 22139014</h2>
+          <img src="./img_gif/td.jpg" alt="">
+        </div>
+        <div class="second">
+          <h2>Nguyễn Văn Đăng <br> 22139015</h2>
+          <img src="./img_gif/nvd.jpg" alt="">
+        </div>
+        <div class="third">
+          <h2>Nguyễn Lâm Vỹ Đạt <br> 22139012</h2>
+          <img src="./img_gif/vydat.jpg" alt="">
+        </div>
+        <button class="exit" id = "out_chart" onclick="exit_footer()">
+          <i class="fa-solid fa-x"></i>
+        </button>
+      </div>
+    </div>
+    <div class="feature" id="feature">
+      <h3 class = "feature_infor">Mô tả: Dashboard Smart Home giám sát nhiệt độ, độ ẩm, nồng độ co2, độ bụi cùng với điều khiển các thiết bị như bóng đèn, máy lạnh, máy lọc không khí trong phòng khách, phòng ngủ, phòng bếp.</h3>
+      <h3 class = "feature_infor">Liên hệ: Nguyễn Văn Đăng<br>
+          Email : 22139015@student.hcmute.edu.vn
+          <br>
+          Số điện thoại liên hệ: 0342488229
+      </h3>
+    </div>
+    <div class="background" id = "bg_overlay">
+      <div class="background_behind"></div>
+      <!-- ------------------------------khach-------------------------- -->
+        <div class="background_content" id = "nhietdo_chart">
+          <iframe src="https://thingspeak.mathworks.com/channels/2680380/charts/1?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "doam_chart">
+          <iframe src="https://thingspeak.mathworks.com/channels/2680380/charts/2?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400"
+          frameborder="0" 
+          width="800" 
+          height="400">
+          </iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "nongdo_chart">
+          <iframe src="https://thingspeak.mathworks.com/channels/2680380/charts/3?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "dobui_chart">
+          <iframe src="https://thingspeak.mathworks.com/channels/2680380/charts/4?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line8&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <!-- -----------------------------------------------BEP------------------------------------------------------------- -->
+        <div class="background_content" id = "nhietdo_chart_kitchen">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689114/charts/1?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "doam_chart_kitchen">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689114/charts/2?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "nongdo_chart_kitchen">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689114/charts/3?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "dobui_chart_kitchen">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689114/charts/4?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+<!-- --------------------------------------------NGU------------------------------------------------------------ -->
+        <div class="background_content" id = "nhietdo_chart_ngu">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689394/charts/1?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "doam_chart_ngu">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689394/charts/2?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "nongdo_chart_ngu">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689394/charts/3?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+        <div class="background_content" id = "dobui_chart_ngu">
+          <iframe src="https://thingspeak.mathworks.com/channels/2689394/charts/4?bgcolor=%23ffffff&color=%23d62020&days=1&dynamic=true&results=60&type=line&update=15&width=800&height=400" 
+          frameborder="0" 
+          width="800" 
+          height="400">></iframe>
+          <button class="exit" id = "out_chart" onclick="exit_chart()">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+    </div>
+  </div>    
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+    <script src="function.js"></script>
+  </body>
+</html>
