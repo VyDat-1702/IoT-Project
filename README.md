@@ -34,7 +34,6 @@ This smart home system uses various sensors to monitor indoor air quality and en
 
 ![System Diagram](https://github.com/user-attachments/assets/d7fc55bb-c48e-4206-938d-958a7a66d955)
 
-### Flow Diagram:
 
 ![Flow Diagram](https://github.com/user-attachments/assets/2487edb6-16d6-440d-b098-6da1d92b638e)
 
